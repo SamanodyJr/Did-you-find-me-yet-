@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,7 +7,6 @@
     <title>DID YOU FIND ME YET?</title>
 </head>
 <body>
-    alertUser('HEY YOU, I HOPE YOU ARE SMILING. YOUR SMILE BRINGS WARMTH TO THE WORLD <3')
     <div style="text-align: center; margin-top: 20%;">
         <form id="myForm" onsubmit="return handleSubmit()">
             <input type="text" id="inputBox" placeholder="DID YOU FIND ME YET?'">
@@ -18,6 +18,8 @@
         function alertUser(msg) {
         alert(msg);
         }
+            alert('HEY YOU, I HOPE YOU ARE SMILING. YOUR SMILE BRINGS WARMTH TO THE WORLD <3');
+
         function handleSubmit() {
             var inputText = document.getElementById("inputBox").value;
 
