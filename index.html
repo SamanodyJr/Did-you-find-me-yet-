@@ -1,10 +1,18 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DID YOU FIND ME YET?</title>
+    <style>
+        #message {
+            font-family: 'Courier New', Courier, monospace;
+            white-space: pre;
+            display: none;
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
     <div style="text-align: center; margin-top: 20%;">
@@ -13,12 +21,14 @@
             <input type="submit" value="Submit">
         </form>
     </div>
+    
+    <div id="message"></div>
 
     <script>
         function alertUser(msg) {
-        alert(msg);
+            alert(msg);
         }
-            alert('HEY YOU, I HOPE YOU ARE SMILING. YOUR SMILE BRINGS WARMTH TO THE WORLD <3');
+        alert('HEY YOU, I HOPE YOU ARE SMILING. YOUR SMILE BRINGS WARMTH TO THE WORLD <3');
 
         function handleSubmit() {
             var inputText = document.getElementById("inputBox").value;
@@ -29,14 +39,48 @@
             } else if (inputText.toLowerCase() === "nightsky") {
                 window.location.href = "https://open.anghami.com/ub6v3jAbTHb";
                 return false;
-            }else if (inputText.toLowerCase() === "khafy") {
+            } else if (inputText.toLowerCase() === "khafy") {
                 window.location.href = "https://open.anghami.com/zKuc5LWBeLb";
                 return false;
-            }else {
+            } else {
                 alert("-_-");
                 return false;
             }
         }
+
+        const sequence = ['m', 'y', ' ', 'l', 'o', 'v', 'e'];
+        let currentIndex = 0;
+
+        document.addEventListener('keydown', (event) => {
+            const key = event.key.toLowerCase();
+            if (key === sequence[currentIndex]) {
+                currentIndex++;
+                if (currentIndex === sequence.length) {
+                    currentIndex = 0;
+                    displayMessage();
+                }
+            } else {
+                currentIndex = 0;
+            }
+        });
+
+        function displayMessage() {
+            const messageElement = document.getElementById('message');
+            const message = "hey you";
+            let index = 0;
+            messageElement.innerHTML = '';
+            messageElement.style.display = 'block';
+
+            const typeWriter = () => {
+                if (index < message.length) {
+                    messageElement.innerHTML += message.charAt(index);
+                    index++;
+                    setTimeout(typeWriter, 150);
+                }
+            };
+            typeWriter();
+        }
     </script>
 </body>
 </html>
+
