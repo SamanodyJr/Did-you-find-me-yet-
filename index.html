@@ -90,6 +90,9 @@
             text-align: center;
             margin-top: 20%;
         }
+        .form-group {
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
@@ -100,6 +103,11 @@
             <input type="text" id="inputBox" placeholder="DID YOU FIND ME YET?">
             <input type="submit" value="Submit">
         </form>
+        <div class="form-group">
+            <input type="text" id="sequenceBox" placeholder="Enter key sequence">
+            <input type="text" id="messageBox" placeholder="Enter corresponding message">
+            <button onclick="addSequence()">Add Sequence</button>
+        </div>
     </div>
     
     <div id="message"></div>
@@ -129,9 +137,8 @@
         }
 
         const sequences = {
-            
-          'my love': 'hey you! \n Thank you for being one of the greatest things that happened to my life! \n I will always love you genuinley. \n You light up my world in million ways.\n You are always on my mind and in my heart.\n I see you always.',
-            'eyes':'your eyes sparkle and time stops...\n your eyes tear up and the world collapses...\n your eyes stare and my heart melts...\n your eyes...\n '
+          'my love': 'hey you! \n Thank you for being one of the greatest things that happened to my life! \n I will always love you genuinely. \n You light up my world in million ways.\n You are always on my mind and in my heart.\n I see you always.',
+          'eyes':'your eyes sparkle and time stops...\n your eyes tear up and the world collapses...\n your eyes stare and my heart melts...\n your eyes...\n '
         };
         
         let currentSequence = '';
@@ -166,6 +173,30 @@
                 }
             };
             typeWriter();
+        }
+
+        function addSequence() {
+            const sequence = document.getElementById('sequenceBox').value.toLowerCase();
+            const message = document.getElementById('messageBox').value;
+            if (validateSequence(sequence)) {
+                sequences[sequence] = message;
+                alert('Sequence added successfully!');
+                document.getElementById('sequenceBox').value = '';
+                document.getElementById('messageBox').value = '';
+            } else {
+                alert('Invalid sequence! Please ensure no key press is repeated.');
+            }
+        }
+
+        function validateSequence(sequence) {
+            const chars = new Set();
+            for (let char of sequence) {
+                if (chars.has(char)) {
+                    return false; // Duplicate character found
+                }
+                chars.add(char);
+            }
+            return true; // No duplicates
         }
     </script>
 </body>
