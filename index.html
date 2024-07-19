@@ -48,25 +48,32 @@
             }
         }
 
-        const sequence = ['m', 'y', ' ', 'l', 'o', 'v', 'e'];
-        let currentIndex = 0;
-
+        const sequences = {
+            'my love': 'hey you! \n Thank you for being one of the greatest things that happened to my life! \n I will always love you genuinley. \n You light up my world in million ways.\n You are always on my mind and in my heart.\n I see you always.',
+            'joe': '... دموعك غالية اوي علي',
+            'eyes':'your eyes sparkle and time stops... your eyes tear up and the world collapses... your eyes stare and my heart melts... your eyes... '
+        };
+        
+        let currentSequence = '';
+        
         document.addEventListener('keydown', (event) => {
             const key = event.key.toLowerCase();
-            if (key === sequence[currentIndex]) {
-                currentIndex++;
-                if (currentIndex === sequence.length) {
-                    currentIndex = 0;
-                    displayMessage();
-                }
-            } else {
-                currentIndex = 0;
-            }
+            currentSequence += key;
+            checkSequences();
         });
 
-        function displayMessage() {
+        function checkSequences() {
+            for (const sequence in sequences) {
+                if (currentSequence.endsWith(sequence)) {
+                    displayMessage(sequences[sequence]);
+                    currentSequence = '';
+                    break;
+                }
+            }
+        }
+
+        function displayMessage(message) {
             const messageElement = document.getElementById('message');
-            const message = "hey you";
             let index = 0;
             messageElement.innerHTML = '';
             messageElement.style.display = 'block';
