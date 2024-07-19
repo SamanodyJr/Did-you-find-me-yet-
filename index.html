@@ -49,9 +49,10 @@
         }
 
         const sequences = {
-            'my love': 'hey you! \n Thank you for being one of the greatest things that happened to my life! \n I will always love you genuinley. \n You light up my world in million ways.\n You are always on my mind and in my heart.\n I see you always.',
+          'my love': 'hey you! \n Thank you for being one of the greatest things that happened to my life! \n I will always love you genuinley. \n You light up my world in million ways.\n You are always on my mind and in my heart.\n I see you always.',
             'joe': '... دموعك غالية اوي علي',
             'eyes':'your eyes sparkle and time stops... your eyes tear up and the world collapses... your eyes stare and my heart melts... your eyes... '
+  
         };
         
         let currentSequence = '';
@@ -66,7 +67,7 @@
             for (const sequence in sequences) {
                 if (currentSequence.endsWith(sequence)) {
                     displayMessage(sequences[sequence]);
-                    currentSequence = '';
+                    currentSequence = ''; // Reset sequence to allow for multiple detections
                     break;
                 }
             }
